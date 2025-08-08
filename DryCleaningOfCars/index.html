@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mad Max Detailing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 10px;
+            animation: backgroundShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%); }
+            100% { background: linear-gradient(135deg, #2d2d30 0%, #1a1a1a 50%, #2d2d30 100%); }
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: rgba(17, 17, 17, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff9900, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 0 30px rgba(255, 153, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.2;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 153, 0, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 153, 0, 0.8)); }
+        }
+
+        .services {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff9900;
+        }
+
+        .services-title {
+            font-size: 20px;
+            color: #ff9900;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 12px 0;
+            font-size: 16px;
+            padding: 15px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid #00ff00;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        ul li:hover::before {
+            left: 100%;
+        }
+
+        ul li:hover {
+            background: rgba(0, 255, 0, 0.1);
+            transform: translateX(5px);
+            border-left-color: #ffcc00;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff9900, #00ff00);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 25px 0;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
+            line-height: 1.3;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .contact {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .contact-item.highlighted {
+            background: rgba(255, 153, 0, 0.15);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 153, 0, 0.2);
+        }
+
+        .contact-item.highlighted:hover {
+            background: rgba(255, 153, 0, 0.25);
+            transform: translateX(8px);
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            padding: 12px 8px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            flex-wrap: wrap;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-item i {
+            font-size: 18px;
+            margin-right: 12px;
+            color: #ff9900;
+            width: 25px;
+            flex-shrink: 0;
+        }
+
+        .contact-item span {
+            word-break: break-word;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #ff9900;
+            text-shadow: 0 0 5px rgba(255, 153, 0, 0.3);
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 18px;
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .social-btn.telegram {
+            background: linear-gradient(45deg, #0088cc, #005580);
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .social-btn.telegram:hover {
+            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4);
+        }
+
+        .social-btn i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                margin: 0;
+                padding: 15px;
+                border-radius: 10px;
+            }
+            
+            .title {
+                font-size: 26px;
+                margin-bottom: 20px;
+            }
+            
+            .services {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .services-title {
+                font-size: 18px;
+            }
+            
+            ul li {
+                font-size: 15px;
+                padding: 12px 10px;
+                margin: 10px 0;
+            }
+            
+            .highlight {
+                font-size: 15px;
+                padding: 15px;
+                margin: 20px 0;
+            }
+            
+            .contact {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .contact-item {
+                margin: 10px 0;
+                padding: 10px 5px;
+            }
+            
+            .contact-item i {
+                font-size: 16px;
+                margin-right: 10px;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                margin: 20px 0;
+            }
+            
+            .social-btn {
+                min-width: 200px;
+                padding: 16px 20px;
+                font-size: 15px;
+            }
+            
+            .social-btn i {
+                margin-right: 10px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .services-title {
+                font-size: 17px;
+            }
+            
+            ul li {
+                font-size: 14px;
+                padding: 10px 8px;
+            }
+            
+            .highlight {
+                font-size: 14px;
+                padding: 12px;
+            }
+            
+            .contact-item span {
+                font-size: 14px;
+            }
+        }
+
+        .decorative-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff9900, transparent);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Mad Max Detailing</div>
+        
+        <div class="decorative-line"></div>
+        
+        <div class="services">
+            <div class="services-title">Наши услуги</div>
+            <ul>
+                <li>• Химчистка салона от 500₽</li>
+                <li>• Детейлинг от 1000₽</li>
+                <li>• Чистка подкапотного пространства от 1500₽</li>
+                <li>• Предпродажная подготовка от 8000₽</li>
+                <li>• и многое другое…</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            🎉 ЗА 5 ПРИВЕДЕННЫХ ДРУЗЕЙ ХИМЧИСТКА БЕСПЛАТНО! 🎉
+        </div>
+
+        <div class="contact">
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><a href="https://yandex.ru/maps/?text=Колхозная+улица+1/6+Сыктывкар+Республика+Коми" target="_blank">Адрес: Колхозная 1/6</a></span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span><a href="tel:+79129670773">Телефон: +7 912 967 07 73</a></span>
+            </div>
+            <div class="contact-item highlighted">
+                <i class="fab fa-whatsapp"></i>
+                <span><a href="https://wa.me/79042067015">WhatsApp: +7 904 206-70-15</a></span>
+            </div>
+            <div class="contact-item highlighted">
+                <i class="fab fa-telegram"></i>
+                <span><a href="https://t.me/+79042067015">Telegram: Написать в Telegram</a></span>
+            </div>
+            <div class="contact-item highlighted">
+                <i class="fab fa-telegram"></i>
+                <span><a href="https://t.me/MadMaxDetailing1" target="_blank">Группа в Telegram</a></span>
+            </div>
+        </div>
+
+
+
+        <div class="decorative-line"></div>
+    </div>
+</body>
+</html>
